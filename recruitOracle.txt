@@ -1,0 +1,26 @@
+create table enquiry(
+	enqryId Number primary key,
+	firstName varchar2(20),
+	lastName  varchar2(20),
+	contactNo Number(10),
+	domain    varchar2(20),
+	city       varchar2(20)
+);
+
+
+create sequence enquiries
+MINVALUE 1001
+MAXVALUE  9999
+START WITH 1001
+INCREMENT BY 1
+NOCACHE;
+
+
+CREATE OR REPLACE TRIGGER TRG_ENQUIREIS
+BEFORE INSERT
+ON ENQUIRY
+FOR EACH ROW
+BEGIN
+:new.ENQRYID:=ENQUIRIES.NEXTVAL;
+END;
+
